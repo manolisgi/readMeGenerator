@@ -1,5 +1,6 @@
 import inquirer from 'inquirer';
 import fs from "fs/promises";
+// import { Console } from 'console';
 
 let {description, size} = await inquirer
     .prompt([
@@ -10,8 +11,8 @@ let {description, size} = await inquirer
         },
         {
             type: 'list',
-            name: 'licence',
-            message: 'What size do you need?',
+            name: 'size',
+            message: 'What kind of license would you like to add?',
             choices: ['BSD 3-Clause', 'Boost Software', 'Apache 2.0'],
             filter(val) {
               return val.toLowerCase();
@@ -30,15 +31,16 @@ let {description, size} = await inquirer
 
     `
     
-    fs.writeFile("README.md, readmeText")
+    fs.writeFile("README.md", readmeText)
 
-    function generateLicense(licence) {
+    function generateLicense(license) {
+        console.log(license);
         
         if(license === "BSD 3-Clause"){
             
             return "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)"
         }
-        else if(licence === "Boost Software"){
+        else if(license === "Boost Software"){
             return "[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)"
         }
         else return "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)"
