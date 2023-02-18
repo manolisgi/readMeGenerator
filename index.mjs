@@ -1,26 +1,45 @@
 import inquirer from 'inquirer';
-// import fs from "fs/promises"
+import fs from "fs/promises";
 
-let {first_name, last_name} = await inquirer
+let {description, size} = await inquirer
     .prompt([
         {
             type: 'input',
-            name: 'first_name',
-            message: "What's your first name",
+            name: 'description',
+            message: "Write a description of your project",
         },
         {
-            type: 'input',
-            name: 'last_name',
-            message: "What's your last name",
-            default() {
-                return 'Doe';
+            type: 'list',
+            name: 'licence',
+            message: 'What size do you need?',
+            choices: ['BSD 3-Clause', 'Boost Software', 'Apache 2.0'],
+            filter(val) {
+              return val.toLowerCase();
             },
         },
     ])
-console.log(first_name, last_name);
+    
+    let readmeText = `# Project Description
+    ${description}
+    
+    // ## The second largest heading
 
-// # The largest heading
+    ${generateLicense(size)}
+    
+    // ###### The smallest heading
 
-// ## The second largest heading
+    `
+    
+    fs.writeFile("README.md, readmeText")
 
-// ###### The smallest heading
+    function generateLicense(licence) {
+        
+        if(license === "BSD 3-Clause"){
+            
+            return "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)"
+        }
+        else if(licence === "Boost Software"){
+            return "[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)"
+        }
+        else return "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)"
+    }
