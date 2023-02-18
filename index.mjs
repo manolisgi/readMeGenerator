@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 import fs from "fs/promises";
 // import { Console } from 'console';
 
-let {title, description, installation, size} = await inquirer
+let {title, description, installation, usage, license, contributing, tests} = await inquirer
     .prompt([
         {
             type: 'input',
@@ -20,13 +20,28 @@ let {title, description, installation, size} = await inquirer
             message: "Decribe the installation instructions",
         },
         {
+            type: 'input',
+            name: 'usage',
+            message: "Provide further usage information for the project",
+        },
+        {
             type: 'list',
-            name: 'size',
+            name: 'license',
             message: 'What kind of license would you like to add?',
             choices: ['BSD 3-Clause', 'Boost Software', 'Apache 2.0'],
             filter(val) {
-              return val.toLowerCase();
+                return val.toLowerCase();
             },
+        },
+        {
+            type: 'input',
+            name: 'contributing',
+            message: "How can someone contribute to this project?",
+        },
+        {
+            type: 'input',
+            name: 'tests',
+            message: "How can you test the project",
         },
     ])
     
@@ -37,13 +52,21 @@ let {title, description, installation, size} = await inquirer
     ## Project Description
     ${description}
     
-    ## Installation Instructions
+    ### Installation Instructions
     ${installation}
-
-    ## The second largest heading
-
-    ${generateLicense(size)}
     
+    ### Usage Information
+    ${usage}
+
+    ### License
+    ${generateLicense(license)}
+
+    ### Contributing 
+    ${contributing}
+
+    ### Tests
+    ${tests}
+
     // ###### The smallest heading
 
     `

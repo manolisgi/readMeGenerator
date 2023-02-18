@@ -6,7 +6,10 @@
     test
     
     ## Installation Instructions
-    install
+    test
+    
+    ## Usage Information
+    test
 
     ## The second largest heading
 
