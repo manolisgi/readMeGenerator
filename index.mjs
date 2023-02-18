@@ -2,12 +2,22 @@ import inquirer from 'inquirer';
 import fs from "fs/promises";
 // import { Console } from 'console';
 
-let {description, size} = await inquirer
+let {title, description, installation, size} = await inquirer
     .prompt([
+        {
+            type: 'input',
+            name: 'title',
+            message: "What is the title of the project",
+        },
         {
             type: 'input',
             name: 'description',
             message: "Write a description of your project",
+        },
+        {
+            type: 'input',
+            name: 'installation',
+            message: "Decribe the installation instructions",
         },
         {
             type: 'list',
@@ -20,10 +30,17 @@ let {description, size} = await inquirer
         },
     ])
     
-    let readmeText = `# Project Description
+    let readmeText = `
+    # Project Title
+    ${title}
+
+    ## Project Description
     ${description}
     
-    // ## The second largest heading
+    ## Installation Instructions
+    ${installation}
+
+    ## The second largest heading
 
     ${generateLicense(size)}
     
