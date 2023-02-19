@@ -2,8 +2,13 @@ import inquirer from 'inquirer';
 import fs from "fs/promises";
 // import { Console } from 'console';
 
-let {title, description, installation, usage, license, contributing, tests} = await inquirer
+let {name, title, description, installation, usage, license, contributing, tests} = await inquirer
     .prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: "What is your GitHub username? ",
+        },
         {
             type: 'input',
             name: 'title',
@@ -45,6 +50,8 @@ let {title, description, installation, usage, license, contributing, tests} = aw
         },
     ])
     
+
+
     let readmeText = `
     # Project Title
     ${title}
@@ -67,6 +74,9 @@ let {title, description, installation, usage, license, contributing, tests} = aw
     ### Tests
     ${tests}
 
+    ### Questions
+    ${name} https://github.com//${name}
+
     // ###### The smallest heading
 
     `
@@ -74,7 +84,6 @@ let {title, description, installation, usage, license, contributing, tests} = aw
     fs.writeFile("README.md", readmeText)
 
     function generateLicense(license) {
-        console.log(license);
         
         if(license === "BSD 3-Clause"){
             
