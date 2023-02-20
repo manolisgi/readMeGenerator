@@ -38,7 +38,7 @@ let { gitHubName, email, title, description, installation, usage, license, contr
             type: 'list',
             name: 'license',
             message: 'What kind of license would you like to add?',
-            choices: ['BSD 3-Clause', 'Boost Software', 'Apache 2.0'],
+            choices: ['MIT', 'Mozilla', 'Apache 2.0'],
             filter(val) {
                 return val.toLowerCase();
             },
@@ -104,12 +104,12 @@ fs.writeFile("README.md", readmeText)
 
 function generateLicense(license) {
 
-    if (license === "BSD 3-Clause") {
+    if (license === "MIT") {
 
-        return "[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)"
+        return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
     }
-    else if (license === "Boost Software") {
-        return "[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)"
+    else if (license === "Mozzila") {
+        return "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)"
     }
     else return "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)"
 }
