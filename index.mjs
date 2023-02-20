@@ -58,13 +58,15 @@ let { gitHubName, email, title, description, installation, usage, license, contr
 
 
 let readmeText = `
-# Project Title
-${title}  ${generateLicense(license)}
+# **Project Title:** ${title}  
+---
+${generateLicense(license)}
+---
 
-## Project Description
+## **Project Description**
 ${description}
 
-## Table of Contents
+## **Table of Contents**
 - [Installation Instructions](###InstallationInstructions)
 - [Usage Information](###UsageInformation)
 - [License](####License)
@@ -72,28 +74,28 @@ ${description}
 - [Tests](###Tests)
 - [Questions](###Questions)
    
-### Installation Instructions
+## **Installation Instructions**
 ${installation}
     
-### Usage Information
+## **Usage Information**
 ${usage}
 
-### License
-Licensed under the [license](${license}) license
+## **License**
+Licensed under the ${license} license
 
-### Contributing 
+## **Contributing**
 ${contributing}
 
-### Tests
+## **Tests**
 ${tests}
 
-### Questions
-[GitHub account] (https://github.com//${gitHubName})
-For any additional questions please reach me at ${email}
+## **Questions**
+- GitHub account https://github.com//${gitHubName}
 
-    // ###### The smallest heading
-
-    `
+- For any additional questions please reach me at **${email}**
+---
+&copy; 2023 manolisgi
+`
 
 fs.writeFile("README.md", readmeText)
 
